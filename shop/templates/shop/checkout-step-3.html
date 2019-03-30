@@ -1,0 +1,170 @@
+ {% extends "shop/base2.html" %} 
+ 
+ 
+ {% block contentx %}
+
+
+  <!-- Main section -->
+            <div class="section">
+                <!-- Container -->
+                <div class="container">
+        
+                    <!-- Checkout step 3 -->
+                    <div class="columns account-header">
+                        <div class="column is-10 is-offset-1 checkout-wrapper is-tablet-landscape-padded">
+                            <!-- Title -->
+                            <div class="checkout-title">
+                                <h2>VERIFICATION</h2>
+                                <h3>ORDER-485359</h3>
+                            </div>
+
+                 
+                           
+                            <!-- Card -->
+                            <div class="flat-card is-auto is-checkout-form">
+                                <div class="columns is-gapless is-vcentered">
+                                    <!-- Order Total -->
+                                    <div class="column is-4 has-text-centered grey-column is-padded">
+                                        <div class="verification-wrapper">
+                                         {% with total_items=cart|length %}
+                              {% if cart|length > 0 %}
+                                            <div class="total-price">
+                                                <i data-feather="credit-card"></i>
+                                                <span>Order Total</span>
+                                                <span> {{ cart.get_total_price }}</span>
+                                                <span>{{ total_items }} Product{{ total_items|pluralize }} ordered</span>
+                                            </div>
+                                            
+                               {% endif %}
+
+                {% endwith %}
+                                        </div>
+                                    </div>
+                                    <!-- List of items -->
+                                    <div class="column is-8 is-padded items-column">
+                                        <!-- Shipping item -->
+                                        <div class="order-item has-popover-top">
+                                            <!-- Description -->
+                                            <div class="item-description">
+                                                <span>Shipping</span>
+                                                <span>Delivery</span>
+                                            </div>
+                                            <!-- Quantity -->
+                                            {% comment %} <div class="item-quantity has-text-centered">
+                                                <span>Qty</span>
+                                                <span>1</span>
+                                            </div> {% endcomment %}
+                                            <!-- Price -->
+                                            <div class="item-price has-text-right">
+                                                Free
+                                            </div>
+                                        </div>
+        
+                                        <!-- Shipping Popover -->
+                                        <div class="webui-popover-content">
+                                            <div class="popover-flex-block">
+                                                <!-- Icon -->
+                                                <div class="icon-block">
+                                                    <img src="assets/images/logo/nephos.svg" alt="">
+                                                </div>
+                                                <!-- Content -->
+                                                <div class="content-block">This is the shipping method that you chose in the previous step.</div>
+                                            </div>
+                                        </div>
+
+                                           {% for item in cart %}
+                    {% with product=item.product  %}
+        
+                                        <!-- Order item 1 -->
+                                        <div class="order-item has-popover-top">
+                                            <!-- Description -->
+                                            <div class="item-description">
+                                                <span>{{ product.name }}</span>
+                                                <span>{{ product.model }}</span>
+                                            </div>
+                                            <!-- Quantity -->
+                                            <div class="item-quantity has-text-centered">
+                                                <span>Qty</span>
+                                                <span>{{item.quantity}}</span>
+                                            </div>
+                                            <!-- Price -->
+                                            <div class="item-price has-text-right">
+                                                ${{product.price}}
+                                            </div>
+                                        </div>
+        
+                                        <!-- Order item 1 Popover -->
+                                        <div class="webui-popover-content">
+                                            <div class="popover-flex-block">
+                                                <!-- Icon -->
+                                                <div class="icon-block">
+                                                    <i data-feather="box" class="is-medium"></i>
+                                                </div>
+                                                <!-- Content -->
+                                                <div class="content-block">
+                                                    <label>Item category</label>
+                                                    <span>Office</span>
+                                                </div>
+                                            </div>
+                                            <div class="popover-flex-block">
+                                                <!-- Icon -->
+                                                <div class="icon-block">
+                                                    <i data-feather="bar-chart-2" class="is-medium"></i>
+                                                </div>
+                                                <!-- Content -->
+                                                <div class="content-block">
+                                                    <label>Item rating</label>
+                                                    <span>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="popover-flex-block">
+                                                <!-- Icon -->
+                                                <div class="icon-block">
+                                                    <i data-feather="dollar-sign" class="is-medium"></i>
+                                                </div>
+                                                <!-- Content -->
+                                                <div class="content-block">
+                                                    <label>Unit price</label>
+                                                    <span>$384,00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+          {% endwith %}
+                {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                           <!-- Checkout Previous/Next buttons -->
+                            <div class="button-wrapper has-text-right">
+                                <a href={% url 'shop:checkout2' %} class="button feather-button is-small primary-button upper-button raised">
+                                    <span>Previous</span>
+                                </a>
+                                <a href={% url 'shop:checkout4' %} class="button feather-button is-small primary-button upper-button raised">
+                                    <span>Next</span>
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- /Container -->
+            </div>
+            <!-- /Main section -->
+
+
+
+
+{% endblock contentx %}

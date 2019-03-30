@@ -1,0 +1,270 @@
+ {% extends "shop/base2.html" %} 
+ 
+ 
+ {% block contentx %}
+
+  <!-- Main section -->
+            <div class="section">
+                <!-- Container -->
+                <div class="container">
+        
+                    <!-- Wishlists Layout -->
+                    <div class="columns account-header">
+                        <div class="column is-10 is-offset-1 is-tablet-landscape-padded">
+                            <!-- title -->
+                            <div class="account-title">
+                                <h2>WISHLIST</h2>
+                                <!-- Icon filigrane -->
+                                <img class="brand-filigrane" src="/static/shop/assets/images/logo/nephos-greyscale.svg" alt="">
+                            </div>
+        
+                           
+        
+                            <!-- Row -->
+                            <div class="columns is-account-grid is-multiline">
+                                <!-- Wishlists -->
+                                <div class="column is-4">
+                                    <!-- List of Wishlists -->
+                                    <div class="flat-card is-auto menu-card">
+                                        <div class="card-title">
+                                            <h3>Add Wishlist</h3>
+        
+                                            <div class="edit-account">
+                                                <a href="javascript:void(0);" class="modal-trigger has-simple-popover" data-modal="new-wishlist" data-content="Add a New Wishlist" data-placement="top"><i class="feather-icons" data-feather="plus"></i></a>
+                                            </div>
+                                        </div>
+                                        <ul class="wishlists">
+                                            <li class="is-active"><a>Main List</a></li>
+                                            <li><a>Couches</a></li>
+                                            <li><a>Tables</a></li>
+                                            <li><a>Accessories</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+        
+                                <div class="column is-8">
+                                    <div class="flat-card wishlist-card is-auto">
+                                        <!-- List of Wishlist Items -->
+                                        <ul class="wishlist">
+        
+                                            <!-- Wishlist Item -->
+                                            <li class="wishlist-item" onclick="return true">
+                                                <div class="item-wrapper">
+                                                    <!-- Product Image -->
+                                                    <img src="/static/shop/assets/images/products/office6.png" alt="">
+                                                    <!-- Product meta -->
+                                                    <span class="product-info">
+                                                        <span>The Conqueror</span>
+                                                        <span>Office</span>
+                                                    </span>
+                                                    <div class="action">
+                                                        <!-- Dropdown button -->
+                                                        <div class="dropdown is-right">
+                                                            <span class="dropdown-trigger">
+                                                                <span class="dropdown-button">
+                                                                    <a href="javascript:void(0);"><i class="feather-icons" data-feather="chevron-down"></i></a>
+                                                                </span>
+                                                            </span>
+                                                            <!-- Dropdown menu-->
+                                                            <div class="dropdown-menu" role="menu">
+                                                                <div class="dropdown-content">
+                                                                    <!-- Dropdown item -->
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="list"></i> <span>Move to List</span>
+                                                                    </a>
+                                                                    <!-- Dropdown item -->
+                                                                    <a class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="eye"></i> <span>View Product</span>
+                                                                    </a>
+                                                                    <!-- Dropdown item -->
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="shopping-cart"></i> <span>Add to Cart</span>
+                                                                    </a>
+                                                                    <hr class="dropdown-divider">
+                                                                    <!-- Dropdown item -->
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="x"></i> <span>Remove</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+        
+                                            <!-- Wishlist Item -->
+                                            <li class="wishlist-item" onclick="return true">
+                                                <div class="item-wrapper">
+                                                    <img src="/static/shop/assets/images/products/office7.gif" alt="">
+                                                    <span class="product-info">
+                                                        <span>The Gentleman</span>
+                                                        <span>Office</span>
+                                                    </span>
+                                                    <div class="action">
+                                                        <div class="dropdown is-right">
+                                                            <span class="dropdown-trigger">
+                                                                <span class="dropdown-button">
+                                                                    <a href="javascript:void(0);"><i class="feather-icons" data-feather="chevron-down"></i></a>
+                                                                </span>
+                                                            </span>
+                                                            <div class="dropdown-menu" role="menu">
+                                                                <div class="dropdown-content">
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="list"></i> <span>Move to List</span>
+                                                                    </a>
+                                                                    <a class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="eye"></i> <span>View Product</span>
+                                                                    </a>
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="shopping-cart"></i> <span>Add to Cart</span>
+                                                                    </a>
+                                                                    <hr class="dropdown-divider">
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="x"></i> <span>Remove</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+        
+                                            <!-- Wishlist Item -->
+                                            <li class="wishlist-item" onclick="return true">
+                                                <div class="item-wrapper">
+                                                    <img src="/static/shop/assets/images/products/access1.jpg" alt="">
+                                                    <span class="product-info">
+                                                        <span>Styled Lamp</span>
+                                                        <span>Accessories</span>
+                                                    </span>
+                                                    <div class="action">
+                                                        <div class="dropdown is-right">
+                                                            <span class="dropdown-trigger">
+                                                                <span class="dropdown-button">
+                                                                    <a href="javascript:void(0);"><i class="feather-icons" data-feather="chevron-down"></i></a>
+                                                                </span>
+                                                            </span>
+                                                            <div class="dropdown-menu" role="menu">
+                                                                <div class="dropdown-content">
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="list"></i> <span>Move to List</span>
+                                                                    </a>
+                                                                    <a class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="eye"></i> <span>View Product</span>
+                                                                    </a>
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="shopping-cart"></i> <span>Add to Cart</span>
+                                                                    </a>
+                                                                    <hr class="dropdown-divider">
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="x"></i> <span>Remove</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+        
+                                            <!-- Wishlist Item -->
+                                            <li class="wishlist-item" onclick="return true">
+                                                <div class="item-wrapper">
+                                                    <img src="/static/shop/assets/images/products/kids5.jpg" alt="">
+                                                    <span class="product-info">
+                                                        <span>Treasure Chest</span>
+                                                        <span>For Kids</span>
+                                                    </span>
+                                                    <div class="action">
+                                                        <div class="dropdown is-right">
+                                                            <span class="dropdown-trigger">
+                                                                <span class="dropdown-button">
+                                                                    <a href="javascript:void(0);"><i class="feather-icons" data-feather="chevron-down"></i></a>
+                                                                </span>
+                                                            </span>
+                                                            <div class="dropdown-menu" role="menu">
+                                                                <div class="dropdown-content">
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="list"></i> <span>Move to List</span>
+                                                                    </a>
+                                                                    <a class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="eye"></i> <span>View Product</span>
+                                                                    </a>
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="shopping-cart"></i> <span>Add to Cart</span>
+                                                                    </a>
+                                                                    <hr class="dropdown-divider">
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="x"></i> <span>Remove</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+        
+                                            <!-- Wishlist Item -->
+                                            <li class="wishlist-item" onclick="return true">
+                                                <div class="item-wrapper">
+                                                    <img src="/static/shop/assets/images/products/modern-bed.jpg" alt="">
+                                                    <span class="product-info">
+                                                        <span>Modern Bed</span>
+                                                        <span>House</span>
+                                                    </span>
+                                                    <div class="action">
+                                                        <div class="dropdown is-right">
+                                                            <span class="dropdown-trigger">
+                                                                <span class="dropdown-button">
+                                                                    <a href="javascript:void(0);"><i class="feather-icons" data-feather="chevron-down"></i></a>
+                                                                </span>
+                                                            </span>
+                                                            <div class="dropdown-menu" role="menu">
+                                                                <div class="dropdown-content">
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="list"></i> <span>Move to List</span>
+                                                                    </a>
+                                                                    <a class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="eye"></i> <span>View Product</span>
+                                                                    </a>
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="shopping-cart"></i> <span>Add to Cart</span>
+                                                                    </a>
+                                                                    <hr class="dropdown-divider">
+                                                                    <a href="#" class="dropdown-item">
+                                                                        <i class="feather-icons" data-feather="x"></i> <span>Remove</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+        
+                                    <!-- List Pagination -->
+                                    <div class="wishlist-pagination">
+                                        <ul>
+                                            <li class="is-active"><span>1</span></li>
+                                            <li><span>2</span></li>
+                                            <li><span>3</span></li>
+                                            <li><span>4</span></li>
+                                        </ul>
+                                    </div>
+                                    <!-- /List Pagination -->
+                                </div>
+                            </div>
+                            <!-- /Row -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /Container -->
+            </div>
+            <!-- /Main section -->
+
+
+
+
+
+
+{% endblock contentx %}

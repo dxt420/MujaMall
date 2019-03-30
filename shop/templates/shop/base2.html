@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title> Muja Mall</title>
+    <link rel="icon" type="image/png" href="{% static 'shop/assets/images/logo/logo-mobile.png' %}" />
+
+    <!--Core CSS -->
+    <link rel="stylesheet" href="{% static 'shop/assets/css/bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/css/core.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="{% static 'shop/assets/js/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/slick/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/webuipopover/jquery.webui-popover.min.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/izitoast/css/iziToast.min.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/zoom/zoom.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/jpcard/card.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/css/chosen/chosen.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/css/icons.min.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Pageloader -->
+    <div class="pageloader"></div>
+    <div class="infraloader is-active"></div>
+    <nav class="navbar mobile-navbar is-hidden-desktop is-hidden-tablet" aria-label="main navigation">
+        <!-- Brand -->
+        <div class="navbar-brand">
+            <a class="navbar-item" href="home.html">
+                <img src="/static/shop/assets/images/logo/logo-mobile.png" alt="">
+            </a>
+
+            <!-- Sidebar mode toggler icon -->
+            <a id="sidebar-mode" class="navbar-item is-icon is-sidebar-toggler" href="javascript:void(0);">
+                <i data-feather="sidebar"></i>
+            </a>
+
+            <!-- Mobile menu toggler icon -->
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <!-- Navbar mobile menu -->
+        <div class="navbar-menu">
+            <!-- Account -->
+            <div class="navbar-item has-dropdown">
+                <a class="navbar-link">
+                    <img src="assets/images/avatars/elie.jpg" alt="">
+                    <span class="is-heading">Elie Daniels</span>
+                </a>
+
+                <!-- Mobile Dropdown -->
+                <div class="navbar-dropdown">
+                    <a href="cart.html" class="navbar-item is-flex">
+                        <span>Cart</span>
+                        <!-- Number of items in Cart -->
+                        <span class="menu-badge">3</span>
+                    </a>
+                    <a href="account.html" class="navbar-item">Account</a>
+                    <a href="wishlist.html" class="navbar-item">Wishlist</a>
+                    <a href="account-edit.html" class="navbar-item">Settings</a>
+                    <a href="authentication.html" class="navbar-item">Log out</a>
+                </div>
+            </div>
+
+            <!-- More -->
+            <div class="navbar-item has-dropdown">
+                <a class="navbar-link">
+                    <i data-feather="grid"></i>
+                    <span class="is-heading">Categories</span>
+                </a>
+
+                <!-- Mobile Dropdown -->
+                <div class="navbar-dropdown">
+                    <a href="products.html" class="navbar-item">House</a>
+                    <a href="products.html" class="navbar-item">Office</a>
+                    <a href="products.html" class="navbar-item">Kids</a>
+                    <a href="products.html" class="navbar-item">Kitchen</a>
+                    <a href="products.html" class="navbar-item">Accessories</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Animated Tabs -->
+    <div class="flat-card is-auto is-element-details">
+        <div class="columns is-gapless is-vcentered">
+            <div class="column is-12 is-component">
+                <div class="inner">
+
+                    <div class="tabs-wrapper underline-tabs animated-tabs ">
+                        <div class="tabs is-centered">
+                            <ul>
+                               
+                                <li class="{{aa}}" ><a href={% url 'shop:home' %}>Products &nbsp; <i data-feather="home"></i></a></li>
+                                <li class="{{bb}}" ><a  href={% url 'shop:cart_detail' %}> Cart &nbsp;<i data-feather="shopping-cart"></i>
+                                
+                              
+                              {% if cart|length > 0 %}
+                                <span class="main-sidebar sidebar-inner icon-menu cart-items"></span>
+                                 {% endif %}
+   <span class="main-sidebar sidebar-inner icon-menu cart-items"></span>
+                                
+                                </a></li>
+                                {% if  request.session.user  %}
+                                  <li class="{{cc}}" ><a href={% url 'shop:orders' %}>Orders &nbsp;<i data-feather="box"></i></a></li>
+                                <li class="{{dd}}" ><a href={% url 'shop:wish' %}>Wishlist &nbsp;<i data-feather="file-text"></i></a></li>
+                                 
+                                <li class="{{ee}}" ><a href={% url 'shop:account' %}>Account &nbsp;<i data-feather="user"></i></a></li>
+                                   
+                                {% else %}
+                                
+                                {% endif %}
+                               
+                              
+                                <li>
+                                    <a href="javascript:void(0);" id="open-search">  Search &nbsp; <i data-feather="search"></i></a>
+                                </li>
+
+
+                                 {% if  request.session.user  %}
+                                  <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                   <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                    <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                     <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                      <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                      <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                   <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                    <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                     <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                      <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                        <li ><a style="color: #ff3860;font-size:80%;"  href={% url 'shop:logout' %}>logout &nbsp;<i data-feather="user"></i></a></li>
+                                {% else %}
+                                <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                   <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                    <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                     <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                      <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                      <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                   <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                    <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                     <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                      <li class="" ><a> &nbsp;<i data-feather="baox"></i></a></li>
+                                 <li class="" ><a style="color: #0023ff;font-size:80%;" href={% url 'shop:login' %}>  Sign In <i data-feather="log-in"></i></a></li>
+                                <li class="" > or  <i data-feather="log-zin"></i></li>
+                                 <li class="" ><a style="color: #0023ff;font-size:80%;" href={% url 'shop:signup' %}>  Create an account  <i data-feather="log-in"></i></a></li>
+                                {% endif %}
+                            </ul>
+
+                        </div>
+                       
+                       
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /Animated Tabs -->
+
+    <!-- FAB -->
+    <div id="quickview-trigger" class="menu-fab is-hidden-mobile">
+        <a class="hamburger-btn" href="javascript:void(0);">
+            <span class="menu-toggle">	
+                    <span class="icon-box-toggle"> 	
+                        <span class="rotate">
+                            <i class="icon-line-top"></i>
+                            <i class="icon-line-center"></i>
+                            <i class="icon-line-bottom"></i> 
+                        </span>
+            </span>
+            </span>
+        </a>
+    </div>
+    <!-- /FAB -->
+
+<!-- Main wrapper -->
+        <div class="shop-wrapper">
+        
+            <!-- Search overlay -->
+            <div class="search-overlay"></div>
+            
+            <!-- Search input -->
+            <div class="search-input-wrapper is-desktop is-hidden">
+                <div class="field">
+                    <div class="control">
+                        <input type="text" name="search" autofocus required>
+                        <span id="clear-search" role="button"><i data-feather="x"></i></span>
+                        <span class="search-help">Type the name of the product you are looking for</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+                            {% block contentx %} {% endblock contentx %}
+                     
+        </div>
+        <!-- /Main wrapper -->
+
+    <!-- Concatenated plugins -->
+    <script src="{% static 'shop/assets/js/app.js' %}"></script>
+    <!-- Helios js -->
+    <script src="{% static 'shop/assets/js/nephos.js' %}"></script>
+</body>
+
+</html>

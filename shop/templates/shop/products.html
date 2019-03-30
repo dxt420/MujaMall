@@ -1,0 +1,97 @@
+
+
+{% extends "shop/base2.html" %}
+
+
+{% block contentx %}
+   
+
+
+ <!-- Main section -->
+ <div class="section">
+    <!-- Container -->
+    <div class="container">
+
+       <!-- House products -->
+                                        <div class="columns category-header">
+                                            <div class="column is-10 is-offset-1 is-tablet-landscape-padded">
+                                                <!-- Title -->
+                                                <div class="category-title is-product-category">
+                                                    <h2>{{cat.val.name}}</h2>
+                                                    <div class="category-icon is-hidden-mobile">
+                                                                      </div>
+                                                </div>
+
+                                                <!-- Controls -->
+                                                <div class="listing-controls">
+                                                    <div class="layout-controls">
+                                                        {% comment %} <a href="products.html"><span class="is-active"><i data-feather="grid"></i></span></a> {% endcomment %}
+                                                        {% comment %} <a href="products-list.html"><span><i data-feather="list"></i></span></a> {% endcomment %}
+                                                    </div>
+                                                    <!-- Sort -->
+                                                    <div class="sort-box">
+                                                        <div class="sort-box-select">
+                                                            <select data-placeholder="Default order" class="chosen-select-no-single">
+                                                                <option>Default Sort</option>	
+                                                                <option>Best Sellers</option>
+                                                                <option>Highest Rated</option>
+                                                                <option>Best Deals</option>
+                                                                <option>Newest Products</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /Controls -->
+
+                                                <!-- Product grid -->
+                                                <div class="columns is-product-grid is-multiline">
+                                                    <!-- Product -->
+                                                {% for p in products %}
+                                                <div class="column is-3">
+                                                    <div class="flat-card">
+                                                        <!-- Product zoomable image -->
+                                                        <div class="image">
+                                                            <img src="{{p.imageurl}}" alt="">
+                                                        </div>
+                                                        <!-- Product meta -->
+                                                        <div class="product-info has-text-centered">
+                                                            <a href="{% url 'shop:productdetail' p.key %}"><h3 class="product-name">{{p.name}} </h3>
+                                                            {% comment %} <p class="product-description">{{p.description}}</p> {% endcomment %}
+                                                            <p class="product-description">Model - {{p.model}}</p>
+                                                            <p class="product-price">
+                                                                {{p.price}}
+                                                            </p>
+                                                        </a>
+                                                        </div>
+                                                        <!-- Product actions -->
+                                                        
+                                                        <div class="actions">
+                                                            <div class="add"><a href="{% url 'shop:cart_add2' p.key %}"><i data-feather="shopping-cart" class="has-simple-popover" data-content="Add to Cart" data-placement="top"></i></a></div>
+                                                            <div class="like"><i data-feather="heart" class="has-simple-popover" data-content="Add to Wishlist" data-placement="top"></i></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                {% endfor %}
+                                                
+                                            
+                                                </div>
+                                                <!-- /Product grid -->
+
+                                                <div class="show-more"><a href="#">Show more products</a></div>
+
+                                            </div>
+                                        </div> 
+                                        <!-- /House products -->
+
+    </div>
+    <!-- /Container -->
+</div>
+<!-- /Main section -->
+
+
+
+
+
+
+                                {% endblock contentx %}

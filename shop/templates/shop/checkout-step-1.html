@@ -1,0 +1,81 @@
+ {% extends "shop/base2.html" %} 
+ 
+ 
+ {% block contentx %}
+
+
+ <!-- Main section -->
+            <div class="section">
+                <!-- Container -->
+                <div class="container">
+        
+                    <!-- Checkout step 1 -->
+                    <div class="columns account-header">
+                        <div class="column is-10 is-offset-1 checkout-wrapper is-tablet-landscape-padded">
+                            <div class="checkout-title">
+                                <h2>CHECKOUT</h2>
+                                <h3>ORDER-485359</h3>
+                            </div>
+                            
+<form id="form-id" action={% url 'shop:checkoutx' %} method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+                            <!-- Card -->
+                            <div class="flat-card is-auto is-checkout-form">
+                                <div class="columns is-gapless is-vcentered">
+                                    <!-- Avatar block -->
+                                    <div class="column is-6 has-text-centered grey-column is-padded">
+                                        <div class="customer-wrapper">
+                                            <img src="assets/images/avatars/elie.jpg" alt="">
+                                            <div class="logged-as">
+                                                Logged in as
+                                            </div>
+                                            <div class="username">
+                                               {{user.val.last_name}}  {{user.val.first_name}}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- Account Info form -->
+                                    <div class="column is-6 is-padded">
+                                      
+                                            <div class="control">
+                                                <label class="checkout-label">First Name*</label>
+                                                <input type="text" class="input" placeholder="" name="fname" value="{{user.val.first_name}}">
+                                            </div>
+                                            <div class="control">
+                                                <label class="checkout-label">Last Name*</label>
+                                                <input type="text" class="input" placeholder="" name="lname" value="{{user.val.last_name}}">
+                                            </div>
+                                            <div class="control">
+                                                <label class="checkout-label">Email*</label>
+                                                <input type="email" class="input" placeholder="" name="email" value="{{user.val.email}}">
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Next/Previous Step -->
+                            <div class="button-wrapper has-text-right">
+                                <a href={% url 'shop:cart' %} class="button feather-button is-small primary-button upper-button raised">
+                                    <span>Cancel</span>
+                                </a>
+                                <a onclick="document.forms['form-id'].submit();" href="javascript:void(0);" class="button feather-button is-small primary-button upper-button raised">
+                                    <span>Next</span>
+                                </a>
+                            </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /Checkout step 1 -->
+                </div>
+                <!-- /Container -->
+            </div>
+            <!-- /Main section -->
+
+
+
+
+
+{% endblock contentx %}

@@ -1,0 +1,342 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends "shop/base2.html" %}
+
+
+{% block contentx %}
+   
+
+<!-- Left product panel -->
+<div class="product-panel">
+    <!-- Left Header -->
+    <div class="panel-header">
+        <div class="likes">
+            <span>263</span>
+            <i data-feather="heart"></i>
+        </div>
+    </div>
+
+    <!-- Product image -->
+    <div id="product-view" class="product-image translateLeft">
+        <img src="{{product.val.imageurl}}" data-action="" alt="">
+    </div>
+
+    <!-- Product details -->
+    <div id="meta-view" class="translateLeft is-hidden">
+        <!-- Product description -->
+        <div class="detailed-description">
+            <div class="meta-block">
+                <h3>Product name</h3>
+                <p>{{product.val.name}}</p>
+            </div>
+            <div class="meta-block">
+                <h3>Product SKU</h3>
+                <p>W589</p>
+            </div>
+            <!-- Product colors -->
+            <div class="meta-block">
+                <h3>Colors</h3>
+                <div class="colored-dots">
+                    <div class="dot-wrapper">
+                        <div class="dot is-blue"></div>
+                    </div>
+                    <div class="dot-wrapper">
+                        <div class="dot is-red"></div>
+                    </div>
+                    <div class="dot-wrapper">
+                        <div class="dot is-dark"></div>
+                    </div>
+                    <div class="dot-wrapper">
+                        <div class="dot is-cream"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Product long description -->
+            <div class="meta-block">
+                <h3 class="spaced">Description</h3>
+                <p class="spaced">{{product.val.description}}</p>
+            </div>
+            <!-- Product Availability -->
+            <div class="meta-block">
+                <h3>Availability</h3>
+                <p>Available</p>
+            </div>
+            <!-- Product Dimensions -->
+            <div class="meta-block">
+                <h3>Dimensions</h3>
+                <p>4” x 4” x 8"</p>
+            </div>
+            <!-- Product Weight -->
+            <div class="meta-block">
+                <h3>Weight</h3>
+                <p>6.77 Lbs</p>
+            </div>
+            <!-- Product Shipping methods -->
+            <div class="meta-block">
+                <h3>Shipping Methods</h3>
+                <p>Delivery, UPS, Express</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Ratings -->
+    <div id="ratings-view" class="translateLeft is-hidden">
+        <div class="product-ratings">
+            <div class="main-rating">
+
+                <!-- Average Rating -->
+                <h3>Product Rating</h3>
+                <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half"></i>
+                </div>
+                <span>Rated <small>4,5/5</small> out of <small>29</small> reviews</span>
+                <span class="add-review modal-trigger" data-modal="review-modal"><i data-feather="plus"></i> Add review</span>
+            </div>
+
+            <!-- Customer reviews -->
+            <div class="customer-ratings">
+                <!-- Product review -->
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-32x32">
+                            <img src="/static/shop/assets/images/avatars.elie.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p>
+                            <span>Elie Daniels</span>
+                            <small>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half"></i>
+                            </small>
+                            <br>
+                            <span class="rating-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- Product review -->
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-32x32">
+                            <img src="/static/shop/assets/images/avatars/john.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p>
+                            <span>John Smith</span>
+                            <small>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </small>
+                            <br>
+                            <span class="rating-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas nullam.</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- Product review -->
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-32x32">
+                            <img src="/static/shop/assets/images/avatars/jane.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p>
+                            <span>Marjory Cambell</span>
+                            <small>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half"></i>
+                            </small>
+                            <br>
+                            <span class="rating-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /Product Ratings -->
+
+    <!-- Product panel actions -->
+    <div class="product-actions">
+        <!-- Zoom Action -->
+        <div class="zoom-buttons">
+            <i data-feather="plus-circle"></i>
+            <i data-feather="minus-circle"></i>
+        </div>
+        <!-- Navigation icons -->
+        <div class="right-actions">
+            <!-- Product image panel -->
+            <span id="show-product" class="product-action is-active"><i data-feather="image"></i></span>
+            <!-- Product meta panel -->
+            <span id="show-meta" class="product-action"><i data-feather="menu"></i></span>
+            <!-- Product ratings panel -->
+            <span id="show-ratings" class="product-action"><i data-feather="message-circle"></i></span>
+        </div>
+    </div>
+</div>
+
+<!-- Right product panel -->
+<div class="product-info-panel">
+    <div class="inner-panel">
+        <div class="panel-header">
+            <!-- Title -->
+            <div class="category-title">
+                <h2>{{product.val.category}}</h2>
+            </div>
+        </div>
+        <!-- Panel body -->
+        <div class="panel-body">
+            <!-- Product Meta -->
+            <h3 class="product-name">{{product.val.name}}<span>SKU-W589</span></h3>
+            <p class="product-description">{{product.val.description}}</p>
+
+            <!-- Product controls -->
+            <div class="product-controls">
+                <!-- Price -->
+                <div class="product-price">
+                    <div class="heading">Price</div>
+                    <div class="value">${{product.val.price}}</div>
+                </div>
+                <form action={% url 'shop:cart_add' product.key %} method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% comment %} <input type="hidden" name="key" value="{{product.key}}">  {% endcomment %}
+                    
+                    {{ cart_product_form.update }}
+                    <!-- Quantity -->
+
+                    <div class="product-quantity">
+                        <div class="heading">Quantity</div>
+                        <div class="control">
+                            <input class="input is-rounded" type="number" name="quantity" value="1">
+                        </div>
+                    </div>
+                    <!-- Add to Cart -->
+                    <div class="add-to-cart">
+                        <div class="heading is-vhidden">Add to cart</div>
+                        <button type="submit" class="button big-button cart-button primary-button upper-button rounded is-bold raised">Add to cart</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Panel footer -->
+        <div class="panel-footer">
+            <div class="footer-inner">
+                <div class="recommended">Recommended</div>
+                <!-- Recommended items -->
+                <div class="columns has-text-centered">
+
+                    <div class="column"></div>
+
+                    <!-- Item -->
+                    <div class="column is-3">
+                        <div class="featured-product">
+                            <div class="image">
+                                <img src="/static/shop/assets/images/products/dark-seat.jpg" alt="">
+                            </div>
+                            <div class="product-info has-text-centered">
+                                <a href="#">
+                                    <h3 class="product-name">Dark seat</h3>
+                                </a>
+                                <p class="product-description">Lorem ipsum sit dolor amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="column is-3">
+                        <div class="featured-product">
+                            <div class="image">
+                                <img src="/static/shop/assets/images/products/blue-seat.png" alt="">
+                            </div>
+                            <div class="product-info has-text-centered">
+                                <a href="#">
+                                    <h3 class="product-name">Blue seat</h3>
+                                </a>
+                                <p class="product-description">Lorem ipsum sit dolor amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="column is-3">
+                        <div class="featured-product">
+                            <div class="image">
+                                <img src="/static/shop/assets/images/products/cosy-red-seat.png" alt="">
+                            </div>
+                            <div class="product-info has-text-centered">
+                                <a href="#">
+                                    <h3 class="product-name">Red seat</h3>
+                                </a>
+                                <p class="product-description">Lorem ipsum sit dolor amet</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /Panel footer -->
+    </div>
+</div>
+<!-- /Right product panel -->
+
+
+
+
+
+                                {% endblock contentx %}

@@ -1,0 +1,65 @@
+
+
+{% extends "shop/base3.html" %}
+{% block content %}
+ <!-- Main section -->
+ <div class="section">
+    <!-- Container -->
+    <div class="container">
+
+        <!-- House products -->
+        <div class="columns category-header">
+            <div class="column is-10 is-offset-1 is-tablet-landscape-padded">
+                <!-- Title -->
+                <div class="category-title is-product-category">
+                    <h2>Our Products</h2>
+                   
+                </div>
+
+                <!-- Controls -->
+                <div class="listing-controls">
+                    <div class="layout-controls">
+                       
+                    </div>
+                    <!-- Sort -->
+                   
+                </div>
+                <!-- /Controls -->
+
+                <!-- Product grid -->
+                <div class="columns is-product-grid is-multiline">
+                    <!-- Product -->
+
+                     {% for c in categories.each %}
+                    <div class="column is-3">
+                        <div class="flat-card">
+                            <!-- Product zoomable image -->
+                            <div class="image">
+                                <img src="/static/shop/assets/images/products/red-seat.png" alt="">
+                            </div>
+                            <!-- Product meta -->
+                            <div class="product-info has-text-centered">
+                                <a href="{% url 'shop:products' c.key %}"><h3 class="product-name">{{c.val.name}}</h3></a>
+                                <p class="product-description">{{c.val.description}}</p>
+                               
+                            </div>
+                            
+                        </div>
+                    </div>
+                     {% endfor %} 
+               
+                </div>
+                <!-- /Product grid -->
+
+
+            </div>
+        </div> 
+        <!-- /House products -->
+
+    </div>
+    <!-- /Container -->
+</div>
+<!-- /Main section -->
+
+
+{% endblock content %}

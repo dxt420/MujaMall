@@ -1,0 +1,114 @@
+ {% extends "shop/base2.html" %} {% block contentx %}
+
+ <!-- Cart page -->
+                    <div class="columns account-header">
+                        <div class="column is-10 is-offset-1 is-tablet-landscape-padded">
+                            <div class="account-title">
+                                <h2>MY CART</h2>
+                                <img class="brand-filigrane" src="/static/shop/assets/images/logo/nephos-greyscale.svg" alt="">
+                            </div>
+        
+                        
+        
+                            <!-- Total and checkout -->
+                            <div class="cart-summary">
+                          
+                             {% with total_items=cart|length %}
+                              {% if cart|length > 0 %}
+                                <span class="cart-total">
+
+                           {{ cart.get_total_price }} <small>{{ total_items }} <span>item{{ total_items|pluralize }} in cart</span></small>
+                                  
+                                </span>
+                                <a 
+                                  {% if  request.session.user  %}
+                                        onclick=""
+
+                                  {% endif %}
+                                 href={% url 'shop:checkout' %}
+                                 
+                                 
+                                 
+                                 
+                                  class="button feather-button is-bold primary-button raised">
+                                    CHECKOUT
+                                </a>
+                            </div>
+
+
+   {% else %}
+
+   <span class="cart-totala">
+
+                                     Your cart is empty.
+                                  
+                                </span>
+                       
+                               {% endif %}
+
+                {% endwith %}
+                                
+        
+                            <!-- Cart Layout -->
+                            <div class="columns is-account-grid is-multiline">
+                                <!-- Product list -->
+                                <div class="column is-12">
+
+
+                                 {% for item in cart %}
+                    {% with product=item.product  %}
+                      
+
+
+                         <!-- Product -->
+                                    <div class="flat-card is-auto cart-card">
+                                        <ul class="cart-content">
+                                            <li>
+                                                <img src="{{ product.imageurl }}" alt="">
+                                                <span class="product-info">
+                                                    <span>{{ product.name }}</span>
+                                                    <span>{{ product.category }}</span>
+                                                </span>
+                                                <span class="product-price">
+                                                    <span>Price</span>
+                                                    <span>{{ product.price }}</span>
+                                                </span>
+        
+                                                <span class="product-quantity">
+                                                    <span>Qty</span>
+                                                    <span class="control">
+                                                        <input class="input" type="number" name="quantity" value="{{ item.update_quantity_form.quantity.value }}">
+                                                          
+                                                    </span>
+                                                </span>
+        
+                                                <span class="action">
+                                                    <span class="action-link is-like has-simple-popover" data-content="Add to Wishlist" data-placement="top">
+                                                        <a href="#"><i class="feather-icons" data-feather="heart"></i></a>
+                                                    </span>
+                                                    <span class="action-link is-remove has-simple-popover" data-content="Remove from Cart" data-placement="top">
+                                                        <a href="{% url 'shop:cart_remove' product.key %}"><i class="feather-icons" data-feather="x"></i></a>
+                                                    </span>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                    {% endwith %}
+                {% endfor %}
+
+
+
+
+
+
+
+                                   
+                                    
+                                </div>
+                            </div>
+                            <!-- /Cart Layout -->
+                        </div>
+                    </div>
+                    <!-- /Cart page -->
+
+{% endblock contentx %}
