@@ -1,0 +1,123 @@
+
+
+
+{% extends "shop/base4.html" %} 
+ 
+ 
+{% block contentx %}
+
+
+
+
+
+     <!-- Animated Tabs -->
+     <div class="flat-card is-auto is-element-details is-hidden-mobile" >
+            <div class="columns is-gapless is-vcentered">
+                <div class="column is-12 is-component">
+    
+                <div class="sidebar-brand" style="width:20% !important;float:left;padding:40px">
+                    <a href="javascript:void(0);"><img src="/static/shop/assets/images/logo/logo.png" style="height:50px"  alt=""></a>
+                </div>
+                    <div class="inner" style="width:80% !important;margin-left:20%">
+    
+              
+                        <div class="tabs-wrapper underline-tabs animated-tabs ">
+                            <div class="tabs">
+                                <ul>
+                         
+                                    <li class="" ><a href={% url 'shop:new' %}>New Product &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="" ><a href={% url 'shop:viewproducts' %}>View Products &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="is-active" ><a href="">New Category &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="" ><a href={% url 'shop:viewcategories' %}>View Categories &nbsp; <i data-feather="home"></i></a></li>
+                                   
+                                </ul>
+    
+                            </div>
+                           
+                           
+                        </div>
+    
+    
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        <!-- /Animated Tabs -->
+
+
+    <div class="">
+            <!-- Container -->
+            <div class="container">
+    
+                <!-- Checkout step 1 -->
+                <div class="columns account-header">
+                    <div class="column is-10 is-offset-1 checkout-wrapper is-tablet-landscape-padded">
+                        <div class="checkout-title">
+                            <h2>New Category</h2>
+                           
+                        </div>
+                        
+   <!-- Inputs -->
+   <div id="inputs" class="columns is-element">
+        <div class="column">
+
+            <!-- Default Inputs -->
+            <div class="flat-card is-auto is-element-details">
+                <div class="columns is-gapless is-vcentered">
+                    <deiv class="column is-11 is-component">
+                        <div class="inner">
+                                <form action={% url 'shop:addcategory' %} method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="columns">
+                            <div class="column is-4 control">
+                                <label>Name</label>
+                                <input class="input is-default" name="name" type="text" placeholder="">
+                                
+                            </div>
+
+                           
+                            <!-- <div class="column is-7 control">
+                                    <label>Description</label>
+                                    <textarea class="input is-default" name="description" ></textarea>
+                            </div> -->
+
+                         
+                        </div>
+
+                      
+
+                          
+                            <input class="button feather-button primary-button" type="submit" value="add">
+
+                        </form>
+                        </div>
+                    </deiv>
+                   
+                </div>
+            </div>
+            <!-- /Default Inputs -->
+
+         
+        </div>
+    </div>
+    <!-- Inputs -->
+                    </div>
+                </div>
+                <!-- /Checkout step 1 -->
+            </div>
+            <!-- /Container -->
+        </div>
+
+
+
+
+
+
+
+
+                             
+    
+ 
+{% endblock contentx %}
+

@@ -68,6 +68,14 @@ path('updatedetail', views.updatedetail , name="updatedetail"),
 
 path('updateship', views.updateship , name="updateship"),
 
+path('viewproducts', views.viewproducts , name="viewproducts"),
+
+path('viewcategories', views.viewcategories , name="viewcategories"),
+
+path('editcategory/<slug:product_id>', views.editcategory , name="editcategory"),
+
+
+
 
 
 

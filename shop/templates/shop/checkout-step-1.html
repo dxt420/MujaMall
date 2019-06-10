@@ -1,8 +1,19 @@
- {% extends "shop/base2.html" %} 
+ {% extends "shop/base4.html" %} 
  
  
  {% block contentx %}
 
+<!-- Action Bar -->
+<div class="action-bar is-centered" style="margin-left: 0px !important;width:100%">
+        <div class="steps-wrapper">
+            <ol class="step-list">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ol>
+        </div>
+    </div>
 
  <!-- Main section -->
             <div class="section">
@@ -26,7 +37,7 @@
                                     <!-- Avatar block -->
                                     <div class="column is-6 has-text-centered grey-column is-padded">
                                         <div class="customer-wrapper">
-                                            <img src="assets/images/avatars/elie.jpg" alt="">
+                                            <img src="/static/shop/assets/images/avatars/elie.jpg" alt="">
                                             <div class="logged-as">
                                                 Logged in as
                                             </div>
@@ -57,7 +68,7 @@
                             </div>
                             <!-- Next/Previous Step -->
                             <div class="button-wrapper has-text-right">
-                                <a href={% url 'shop:cart' %} class="button feather-button is-small primary-button upper-button raised">
+                                <a href={% url 'shop:cart_detail' %} class="button feather-button is-small primary-button upper-button raised">
                                     <span>Cancel</span>
                                 </a>
                                 <a onclick="document.forms['form-id'].submit();" href="javascript:void(0);" class="button feather-button is-small primary-button upper-button raised">

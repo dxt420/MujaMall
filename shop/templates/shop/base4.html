@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title> Muja Mall</title>
+    <link rel="icon" type="image/png" href="{% static 'shop/assets/images/logo/logo-mobile.png' %}" />
+
+    <!--Core CSS -->
+    <link rel="stylesheet" href="{% static 'shop/assets/css/bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/css/bulma-badge.min.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/css/core.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+
+   
+
+
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script type="text/javascript" src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+
+    
+
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="{% static 'shop/assets/js/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/slick/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/webuipopover/jquery.webui-popover.min.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/izitoast/css/iziToast.min.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/zoom/zoom.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/js/jpcard/card.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/css/chosen/chosen.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/assets/css/icons.min.css' %}">
+    
+
+</head>
+
+<body>
+
+    <!-- Pageloader -->
+    <div class="pageloader"></div>
+    <div class="infraloader is-active"></div>
+   
+
+     
+
+
+   
+
+  
+
+<!-- Main wrapper -->
+        <div class="shop-wrapper">
+        
+            {% block contentx %} {% endblock contentx %}
+                     
+        </div>
+        <!-- /Main wrapper -->
+
+    <!-- Concatenated plugins -->
+    <script src="{% static 'shop/assets/js/app.js' %}"></script>
+    <!-- Helios js -->
+    <script src="{% static 'shop/assets/js/nephos.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+     <script>
+      feather.replace()
+    </script>
+     {% block javascript %}{% endblock %}
+</body>
+
+</html>

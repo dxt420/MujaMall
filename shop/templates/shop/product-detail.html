@@ -47,7 +47,8 @@
 
 {% block contentx %}
    
-
+<div id="lit">
+</div>
 <!-- Left product panel -->
 <div class="product-panel">
     <!-- Left Header -->
@@ -253,7 +254,7 @@
                     <div class="heading">Price</div>
                     <div class="value">${{product.val.price}}</div>
                 </div>
-                <form action={% url 'shop:cart_add' product.key %} method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" id="cartier">
                     {% csrf_token %}
                     {% comment %} <input type="hidden" name="key" value="{{product.key}}">  {% endcomment %}
                     
@@ -269,7 +270,7 @@
                     <!-- Add to Cart -->
                     <div class="add-to-cart">
                         <div class="heading is-vhidden">Add to cart</div>
-                        <button type="submit" class="button big-button cart-button primary-button upper-button rounded is-bold raised">Add to cart</button>
+                        <button type="submit" id="cartbtn" class="button big-button cart-button primary-button upper-button rounded is-bold raised">Add to cart</button>
                     </div>
                 </form>
             </div>
@@ -339,4 +340,36 @@
 
 
 
-                                {% endblock contentx %}
+ {% endblock contentx %}
+
+
+{% block javascript %}
+
+ <script type="text/javascript">
+
+   // console.log($('#cartCounter').attr('data-badge'));
+   // var currentCartCount = $('#cartCounter').attr('data-badge');
+
+  // console.log($('#cartCounter').html());
+    var frm = $('#cartier');
+    frm.submit(function () {
+        $.ajax({
+            type: frm.attr('method'),
+            url: '{% url "shop:cart_add" product.key %}',
+            data: frm.serialize(),
+            async:true,
+            success: function (data) {
+         
+            document.getElementById('cartCounter').setAttribute("data-badge", data.total_items);
+               
+            },
+            error: function(data) {
+                // $("#MESSAGE-DIV").html("Something went wrong!");
+               
+            }
+        });
+        return false;
+    });
+</script>             
+                                
+{% endblock %}

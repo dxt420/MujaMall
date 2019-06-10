@@ -17,6 +17,18 @@ from django.conf import settings
 import re
 
 
+from ravepay.signals import payment_verified
+
+from django.dispatch import receiver
+from django.http import JsonResponse
+import json
+
+
+
+
+
+
+
 config = {
     'apiKey': "AIzaSyA-W5UF_rvGjzUuSxPwNOQb0wO8q0cDl5A",
     'authDomain': "muja-mall.firebaseapp.com",
@@ -43,6 +55,18 @@ db = firebase.database()
 # user = firebase.auth().currentUser
 
 # user = request.session.get('user')
+
+
+@receiver(payment_verified)
+def on_payment_verified(sender, ref,amount, **kwargs):
+    """
+    ref: paystack reference sent back.
+    amount: amount in Naira or the currency passed
+    """
+    pass
+
+
+    
 
 def postsign(request):
     email=request.POST.get('email')
@@ -132,12 +156,16 @@ def home(request):
     #     print(request.session.get('user'))
     #     return render(request, "shop/login.html")
     cart = Cart(request)
+    uuu = None
+    if request.session.get('user'):
+        uuu = db.child("users").child(request.session.get('user')['localId']).child("details").get()
 
     categories = db.child("categories").get()
     context = {
         "categories":categories,
         "aa":"is-active",
-        'cart': cart
+        'cart': cart,
+        "user":uuu
     }
     return render(request,"shop/home.html",context)
 
@@ -148,6 +176,7 @@ def productslist(request):
 
 def products(request,c):
     # products = db.child("products").orderBy("category").startAt(c).endAt(c).get()
+    uuu = db.child("users").child(request.session.get('user')['localId']).child("details").get()
     pro = db.child("products").get()
     cat = db.child("categories").child(c).get()
     
@@ -172,7 +201,8 @@ def products(request,c):
         "aa":"is-active",
         "cat":cat,
         "cart": cc,
-        "item":item
+        "item":item,
+        "user":uuu
     }
 
  
@@ -182,11 +212,14 @@ def productdetail(request,p):
     product = db.child("products").child(p).get()
     cart_product_form = CartAddProductForm()
     cart = Cart(request)
+    uuu = db.child("users").child(request.session.get('user')['localId']).child("details").get()
+
     context = {
         "product":product,
         "aa":"is-active",
         'cart_product_form': cart_product_form,
-        'cart': cart
+        'cart': cart,
+        "user":uuu
     }
     return render(request,"shop/product-detail.html",context)
 
@@ -195,21 +228,45 @@ def new(request):
     context = {
         "categories":categories
     }
-    return render(request,"shop/new.html",context)
+    return render(request,"shop/admin/new.html",context)
+
+def viewproducts(request):
+    products = db.child("products").get()
+    context = {
+        "products":products
+    }
+    return render(request,"shop/admin/products.html",context)
+
+def viewcategories(request):
+    products = db.child("products").get()
+    categories = db.child("categories").get()
+    context = {
+        "categories":categories,
+        "products":products
+    }
+    return render(request,"shop/admin/categories.html",context)
 
 def newcategory(request):
-    return render(request,"shop/new2.html")
+    return render(request,"shop/admin/new2.html")
+
+
+
+
 
 
 def orders(request):
+    uuu = db.child("users").child(request.session.get('user')['localId']).child("details").get()
     context = {
-        "cc":"is-active"
+        "cc":"is-active",
+        "user":uuu
     }
     return render(request,"shop/orders.html",context)
 
 def wish(request):
+    uuu = db.child("users").child(request.session.get('user')['localId']).child("details").get()
     context = {
-        "dd":"is-active"
+        "dd":"is-active",
+        "user":uuu
     }
     return render(request,"shop/wish.html",context)
 
@@ -259,14 +316,47 @@ def addproduct(request):
 
 def addcategory(request):
     data = {
-        "name": request.POST.get('name'),
-        "description": request.POST.get('description')      
+        "name": request.POST.get('name')
     }
 
     results = db.child("categories").push(data, user['idToken'])
     
     return HttpResponseRedirect(reverse('shop:home'))
     # return render(request,"shop/product-detail.html")
+
+def editcategory(request,product_id):
+    old_name = request.POST.get('previous_name')
+    aaa = db.child("products").get()
+    
+    aa = None
+
+    for a in aaa.each():
+        aa = db.child("products").order_by_child("category").equal_to(old_name).get()
+        
+    data = {
+        "name": request.POST.get('name'),
+        "featured": request.POST.get('featured'+product_id)
+    }
+
+    data2 = {
+        "category": request.POST.get('name')
+    }
+    db.child("categories").child(product_id).update(data)
+
+
+    
+
+   
+    
+    for b in aa.each():
+        print(b.val())
+        db.child("products").child(b.key()).update(data2)
+    print("done")
+    return JsonResponse({"hello":"hello"}, safe=False)
+    
+
+    # return JsonResponse(abc, safe=False)
+    # return render(request,"shop/admin/new2.html")
 
 
 
@@ -331,9 +421,15 @@ def cart_add(request, product_id):
         cart.add(product=pro, quantity=cd['quantity'], update_quantity=cd['update'])
     else:
         print("bitch am invalid")
+    
+    # with cart.__len__ as total_items:
+    abc = {
+        "total_items":cart.__len__()
+    }
    
+    return JsonResponse(abc, safe=False)
   
-    return HttpResponseRedirect(reverse('shop:productdetail', kwargs={'p': pro.key()}))
+    # return HttpResponseRedirect(reverse('shop:productdetail', kwargs={'p': pro.key()}))
 
  
 
@@ -377,10 +473,11 @@ def cart_remove2(request, product_id):
 
 
 def cart_detail(request):
+    u = db.child("users").child(request.session.get('user')['localId']).child("details").get()
     cart = Cart(request)
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
-    return render(request, 'shop/cart.html', {'cart': cart,   "bb":"is-active"})
+    return render(request, 'shop/cart.html', {'cart': cart,   "bb":"is-active","user":u})
 
 
 
@@ -398,23 +495,29 @@ def checkout(request):
         return render(request, "shop/login.html")
 
 def checkout2(request):
+    u = db.child("users").child(request.session.get('user')['localId']).child("details").get()
     ship = db.child("users").child(request.session.get('user')['localId']).child("shipping_details").get()
    
     context = {
-        "ship":ship
+        "ship":ship,
+        "user":u
     }
     
     return render(request, 'shop/checkout-step-2.html',context)
 
 def checkout3(request):
+    u = db.child("users").child(request.session.get('user')['localId']).child("details").get()
     cart = Cart(request)
     context = {
-        "cart":cart
+        "cart":cart,
+        "user":u
     }
     return render(request, 'shop/checkout-step-3.html',context)
 
 def checkout4(request):
+    u = db.child("users").child(request.session.get('user')['localId']).child("details").get()
     return render(request, 'shop/checkout-step-4.html')
+    # return render(request, 'shop/checkout-step-5.html')
     
 
 def checkoutx(request):
@@ -482,6 +585,7 @@ def updateship(request):
 
 
 def accountedit(request):
+
 
     u = db.child("users").child(request.session.get('user')['localId']).child("details").get()
 

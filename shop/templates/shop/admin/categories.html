@@ -1,0 +1,249 @@
+{% extends "shop/base4.html" %}
+
+
+{% block contentx %}
+
+<!-- Animated Tabs -->
+<div class="flat-card is-auto is-element-details is-hidden-mobile">
+    <div class="columns is-gapless is-vcentered">
+        <div class="column is-12 is-component">
+
+            <div class="sidebar-brand" style="width:20% !important;float:left;padding:40px">
+                <a href="javascript:void(0);"><img src="/static/shop/assets/images/logo/logo.png" style="height:50px"
+                        alt=""></a>
+            </div>
+            <div class="inner" style="width:80% !important;margin-left:20%">
+
+
+                <div class="tabs-wrapper underline-tabs animated-tabs ">
+                    <div class="tabs">
+                        <ul>
+
+                            <li class=""><a href={% url 'shop:new' %}>New Product &nbsp; <i data-feather="home"></i></a>
+                            </li>
+                            <li class=""><a href={% url 'shop:viewproducts' %}>View Products &nbsp; <i
+                                        data-feather="home"></i></a></li>
+                            <li class=""><a href={% url 'shop:newcategory' %}>New Category &nbsp; <i
+                                        data-feather="home"></i></a></li>
+                            <li class="is-active"><a href={% url 'shop:viewcategories' %}>View Categories &nbsp; <i
+                                        data-feather="home"></i></a></li>
+
+                        </ul>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /Animated Tabs -->
+
+
+
+
+
+<!-- Cart page -->
+<div class="columns account-header">
+    <div class="column is-10 is-offset-1 is-tablet-landscape-padded">
+        <div class="account-title">
+            <h2>ALL CATEGORIES</h2>
+            <img class="brand-filigrane" src="/static/shop/assets/images/logo/nephos-greyscale.svg" alt="">
+        </div>
+
+
+        <!-- Cart Layout -->
+        <div class="columns is-account-grid is-multiline">
+            <!-- Product list -->
+            <div class="column is-12">
+
+
+                {% for category in categories.each %}
+
+                <form id="form{{category.key}}"  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+                <!-- Product -->
+                <div class="flat-card is-auto cart-card">
+                    <ul class="cart-content">
+                        <li>
+                            
+
+
+                            <span class="product-info">
+                                <span>Name</span>
+                                <br>
+
+                                <span><input class="input is-default" id="name{{category.key}}" name="name" type="text" disabled
+                                        value="{{ category.val.name }}"></span>
+
+                                        <input name="previous_name" type="hidden" value="{{ category.val.name }}">
+
+
+                            </span>
+                            <span class="">
+                                <span class="product-info">Featured Image</span>
+                                <br>
+
+
+
+
+
+
+
+
+                                {% for product in products.each %}
+
+                                {% ifequal product.val.category category.val.name %}
+                                <label class="radio" style="float:left">
+
+
+
+                                    <input class="feat{{category.key}}" type="radio" name="rsvp" disabled value="{{ product.val.imageurl }}"
+                                        {% ifequal category.val.featured  product.val.imageurl  %}checked{% endifequal %}>
+                                    <img src="{{ product.val.imageurl }}" alt="">
+                                   
+                                </label>
+
+                                {% endifequal %}
+
+                                {% endfor %}
+
+
+                                <input id="featured{{category.key}}" name="featured{{category.key}}" type="hidden" value="">
+
+
+
+
+
+
+                            </span>
+
+
+                            <span class="action">
+                                <span id="editBTN{{category.key}}" style="display: ;" class="action-link is-like has-simple-popover" >
+                                    <a onclick="edit('{{category.key}}')"><i class="feather-icons has-simple-popover"
+                                            data-content="Edit" data-placement="top"
+                                            data-feather="edit"></i></a>
+
+                                 
+                                </span>
+                                <span id="approveBTN{{category.key}}" style="display: none" class="action-link is-like has-simple-popover">
+                                  
+                                    <a  onclick="approveedit('{{category.key}}')"><i class="feather-icons has-simple-popover"
+                                        data-content="Confirm" data-placement="top"
+                                        data-feather="check"></i></a>
+                                </span>
+                                <span class="action-link is-remove has-simple-popover" data-content="Delete Product"
+                                    data-placement="top">
+                                    <a href=""><i class="feather-icons" data-feather="trash-2"></i></a>
+                                </span>
+                            </span>
+
+                        
+                        </li>
+                    </ul>
+                </div>
+            </form>
+
+                {% endfor %}
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <!-- /Cart Layout -->
+    </div>
+</div>
+<!-- /Cart page -->
+
+
+<script type="text/javascript">
+    // $("#edit").click(function (event) {
+    //     event.preventDefault();
+    //     $('.inputDisabled').prop("disabled", false); // Element(s) are now enabled.
+    // });
+
+
+    function edit(a){
+        document.getElementById('approveBTN'+a).style.display = '';
+
+        document.getElementById('editBTN'+a).style.display = 'none';
+
+        console.log("Benz Truck");
+
+       
+
+        var kk = 'name'+a;
+
+        console.log(kk); 
+
+        document.getElementById('name'+a).disabled = false;
+        var slat = document.getElementsByClassName('feat'+a);
+        for (var i = 0; i < slat.length; i++) { 
+            slat[i].disabled = false;
+        }
+
+    }
+
+
+    function approveedit(a){
+
+        var feat = document.getElementsByClassName('feat'+a);
+        for (var i = 0; i < feat.length; i++) { 
+            if (feat[i].checked) {
+                console.log(feat[i].value);
+                document.getElementById('featured'+a).value = feat[i].value;
+                
+            }else{
+
+            }
+            // feat[i].disabled = false;
+        }
+
+        // var feat = document.querySelector('input[name="rsvp"]:checked').value;
+        
+        var frm = $('#form'+a);
+        var urlx = "{% url 'shop:editcategory' 123 %}";
+        var urly = urlx.replace('123',a);
+        // frm.submit(function () {
+            // console.log(frm.serialize());
+            $.ajax({
+                type: frm.attr('method'),
+                url: urly,
+                data: frm.serialize(),
+                async:true,
+                success: function (data) {
+            
+               // document.getElementById('cartCounter').setAttribute("data-badge", data.total_items);
+               console.log("pass"); 
+                
+                },
+                error: function(data) {
+                    // $("#MESSAGE-DIV").html("Something went wrong!");
+                    console.log("fail"); 
+                
+                }
+            });
+            return false;
+        // });
+    }
+
+   
+
+    
+</script>
+
+
+{% endblock contentx %}

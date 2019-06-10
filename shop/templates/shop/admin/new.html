@@ -1,0 +1,192 @@
+{% extends "shop/base4.html" %} 
+ 
+ 
+{% block contentx %}
+
+
+
+
+
+     <!-- Animated Tabs -->
+     <div class="flat-card is-auto is-element-details is-hidden-mobile" >
+            <div class="columns is-gapless is-vcentered">
+                <div class="column is-12 is-component">
+    
+                <div class="sidebar-brand" style="width:20% !important;float:left;padding:40px">
+                    <a href="javascript:void(0);"><img src="/static/shop/assets/images/logo/logo.png" style="height:50px"  alt=""></a>
+                </div>
+                    <div class="inner" style="width:80% !important;margin-left:20%">
+    
+              
+                        <div class="tabs-wrapper underline-tabs animated-tabs ">
+                            <div class="tabs">
+                                <ul>
+                         
+                                    <li class="is-active" ><a href="">New Product &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="" ><a href={% url 'shop:viewproducts' %}>View Products &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="" ><a href={% url 'shop:newcategory' %}>New Category &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="" ><a href={% url 'shop:viewcategories' %}>View Categories &nbsp; <i data-feather="home"></i></a></li>
+                                   
+                                </ul>
+    
+                            </div>
+                           
+                           
+                        </div>
+    
+    
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        <!-- /Animated Tabs -->
+
+
+    <div class="">
+            <!-- Container -->
+            <div class="container">
+    
+                <!-- Checkout step 1 -->
+                <div class="columns account-header">
+                    <div class="column is-10 is-offset-1 checkout-wrapper is-tablet-landscape-padded">
+                        <div class="checkout-title">
+                            <h2>New Product</h2>
+                           
+                        </div>
+                        
+   <!-- Inputs -->
+   <div id="inputs" class="columns is-element">
+        <div class="column">
+
+            <!-- Default Inputs -->
+            <div class="flat-card is-auto is-element-details">
+                <div class="columns is-gapless is-vcentered">
+                    <deiv class="column is-11 is-component">
+                        <div class="inner">
+                                <form action={% url 'shop:addproduct' %} method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="columns">
+                            <div class="column is-4 control">
+                                <label>Name</label>
+                                <input class="input is-default" name="name" type="text" placeholder="">
+                                
+                            </div>
+
+                           
+                            <div class="column is-4 control">
+                                <label>Category</label>
+                                <select class="input" id="selectbox1" name='category'>
+                                    {% for car in categories.each %}
+                                        <option value='{{ car.val.name }}'>{{ car.val.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="column is-3 control">
+                                    <label>Model</label>
+                                    <input class="input is-default" name="model" type="text" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="columns">
+
+                            <div class="column is-8 control">
+                                    <label>Description</label>
+                                    
+                                    <textarea class="input is-default" name="description" ></textarea>
+                            </div>
+
+                            <div class="column is-3 control">
+                                    <label>Price</label>
+                                    <input class="input is-default" name="price" type="text" placeholder="">
+                            </div>
+                            <!-- <input type="file" name="pic" id="pic" accept="image/*"><br><br> -->
+                        </div>
+
+                            <div class="column is-8 control">
+                                    <label>Upload Image</label>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="file-label">
+                                                <input class="" type="file" name="pic" id="imgInp">
+                                            </span>
+                                        </span>
+                                        <!-- <input type="text" class="input" readonly> -->
+                                    </div>
+                                    <img style="width:400px" id='img-upload'/>
+                            </div>
+
+                          
+                            <input class="button feather-button primary-button" type="submit" value="add">
+
+                        </form>
+                        </div>
+                    </deiv>
+                   
+                </div>
+            </div>
+            <!-- /Default Inputs -->
+
+         
+        </div>
+    </div>
+    <!-- Inputs -->
+                    </div>
+                </div>
+                <!-- /Checkout step 1 -->
+            </div>
+            <!-- /Container -->
+        </div>
+
+
+
+
+
+
+
+
+                             
+    
+                                    <script type="text/javascript">  
+
+                                        $(document).ready( function() {
+                                            $(document).on('change', '.btn-file :file', function() {
+                                            var input = $(this),
+                                                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                                            input.trigger('fileselect', [label]);
+                                            });
+                                        
+                                            $('.btn-file :file').on('fileselect', function(event, label) {
+                                                
+                                                var input = $(this).parents('.input-group').find(':text'),
+                                                    log = label;
+                                                
+                                                if( input.length ) {
+                                                    input.val(log);
+                                                } else {
+                                                    if( log ) alert(log);
+                                                }
+                                            
+                                            });
+                                            function readURL(input) {
+                                                if (input.files && input.files[0]) {
+                                                    var reader = new FileReader();
+                                                    
+                                                    reader.onload = function (e) {
+                                                        $('#img-upload').attr('src', e.target.result);
+                                                    }
+                                                    
+                                                    reader.readAsDataURL(input.files[0]);
+                                                }
+                                            }
+                                        
+                                            $("#imgInp").change(function(){
+                                                readURL(this);
+                                            }); 	
+                                        });
+                                        
+                                        </script>
+
+{% endblock contentx %}
+

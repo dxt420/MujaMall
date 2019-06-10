@@ -1,0 +1,131 @@
+{% extends "shop/base4.html" %} 
+ 
+ 
+{% block contentx %}
+
+
+     <!-- Animated Tabs -->
+     <div class="flat-card is-auto is-element-details is-hidden-mobile" >
+            <div class="columns is-gapless is-vcentered">
+                <div class="column is-12 is-component">
+    
+                <div class="sidebar-brand" style="width:20% !important;float:left;padding:40px">
+                    <a href="javascript:void(0);"><img src="/static/shop/assets/images/logo/logo.png" style="height:50px"  alt=""></a>
+                </div>
+                    <div class="inner" style="width:80% !important;margin-left:20%">
+    
+              
+                        <div class="tabs-wrapper underline-tabs animated-tabs ">
+                            <div class="tabs">
+                                <ul>
+                         
+                                    <li class="" ><a href={% url 'shop:new' %}>New Product &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="is-active" ><a href={% url 'shop:viewproducts' %}>View Products &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="" ><a href={% url 'shop:newcategory' %}>New Category &nbsp; <i data-feather="home"></i></a></li>
+                                    <li class="" ><a href={% url 'shop:viewcategories' %}>View Categories &nbsp; <i data-feather="home"></i></a></li>
+                                   
+                                </ul>
+    
+                            </div>
+                           
+                           
+                        </div>
+    
+    
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        <!-- /Animated Tabs -->
+
+<!-- Cart page -->
+                   <div class="columns account-header">
+                       <div class="column is-10 is-offset-1 is-tablet-landscape-padded">
+                           <div class="account-title">
+                               <h2>ALL PRODUCTS</h2>
+                               <img class="brand-filigrane" src="/static/shop/assets/images/logo/nephos-greyscale.svg" alt="">
+                           </div>
+   
+       
+                           <!-- Cart Layout -->
+                           <div class="columns is-account-grid is-multiline">
+                               <!-- Product list -->
+                               <div class="column is-12">
+
+
+                                    {% for product in products.each %}
+                  
+                     
+
+
+                        <!-- Product -->
+                                   <div class="flat-card is-auto cart-card">
+                                       <ul class="cart-content">
+                                           <li>
+                                                <span class="product-price">
+                                                    
+                                                        <img src="{{ product.val.imageurl }}" alt="">
+                                                    </span>
+                                              
+                                               <span class="product-info">
+                                                    <span>Name</span>
+                                                    <br>
+                                                   <span>{{ product.val.name }}</span>
+                                                 
+                                               </span>
+                                               <span class="product-info">
+                                                    <span>Category</span>
+                                                    <br>
+                                            
+                                                   <span>{{ product.val.category }}</span>
+                                               </span>
+                                               <span class="product-info">
+                                                    <span>Model</span>
+                                                    <br>
+                                                   <span>{{ product.val.model }}</span>
+                                                  
+                                               </span>
+                                               <span class="product-price">
+                                                   <span>Price</span>
+                                              
+                                                        <br>
+                                                   <span>{{ product.val.price }}</span>
+                                               </span>
+       
+                                               <span class="product-quantity">
+                                                   <span>Description</span>
+                                                   <br>
+                                                   <span>{{ product.val.description }}</span>
+                                               </span>
+       
+                                               <span class="action">
+                                                   <span class="action-link is-like has-simple-popover" data-content="Add to Wishlist" data-placement="top">
+                                                       <a href="#"><i class="feather-icons" data-feather="edit"></i></a>
+                                                   </span>
+                                                   <span class="action-link is-remove has-simple-popover" data-content="Remove from Cart" data-placement="top">
+                                                       <a href="{% url 'shop:cart_remove' product.key %}"><i class="feather-icons" data-feather="x"></i></a>
+                                                   </span>
+                                               </span>
+                                           </li>
+                                       </ul>
+                                   </div>
+            
+               {% endfor %}
+
+
+
+
+
+
+
+                                  
+                                   
+                               </div>
+                           </div>
+                           <!-- /Cart Layout -->
+                       </div>
+                   </div>
+                   <!-- /Cart page -->
+
+{% endblock contentx %}
