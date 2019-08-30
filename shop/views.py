@@ -17,7 +17,7 @@ from django.conf import settings
 import re
 
 
-from ravepay.signals import payment_verified
+
 
 from django.dispatch import receiver
 from django.http import JsonResponse
@@ -57,16 +57,6 @@ db = firebase.database()
 # user = request.session.get('user')
 
 
-@receiver(payment_verified)
-def on_payment_verified(sender, ref,amount, **kwargs):
-    """
-    ref: paystack reference sent back.
-    amount: amount in Naira or the currency passed
-    """
-    pass
-
-
-    
 
 def postsign(request):
     email=request.POST.get('email')
@@ -170,13 +160,16 @@ def home(request):
     return render(request,"shop/home.html",context)
 
     
-
+    
 def productslist(request):
     return render(request,"shop/product-list.html")
 
 def products(request,c):
     # products = db.child("products").orderBy("category").startAt(c).endAt(c).get()
-    uuu = db.child("users").child(request.session.get('user')['localId']).child("details").get()
+    uuu = None
+    if request.session.get('user'):
+        uuu = db.child("users").child(request.session.get('user')['localId']).child("details").get()
+    
     pro = db.child("products").get()
     cat = db.child("categories").child(c).get()
     
@@ -473,11 +466,15 @@ def cart_remove2(request, product_id):
 
 
 def cart_detail(request):
-    u = db.child("users").child(request.session.get('user')['localId']).child("details").get()
-    cart = Cart(request)
-    for item in cart:
-        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
-    return render(request, 'shop/cart.html', {'cart': cart,   "bb":"is-active","user":u})
+    if request.session.get('user'): 
+        u = db.child("users").child(request.session.get('user')['localId']).child("details").get()
+        cart = Cart(request)
+        for item in cart:
+            item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+        return render(request, 'shop/cart.html', {'cart': cart,   "bb":"is-active","user":u})
+    else:
+        return render(request, 'shop/cart.html', {"bb":"is-active"})
+    
 
 
 

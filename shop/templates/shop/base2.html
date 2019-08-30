@@ -115,13 +115,16 @@
                             <ul>
                      
                                 <li class="{{aa}}" ><a href={% url 'shop:home' %}>Products &nbsp; <i data-feather="home"></i></a></li>
-                                <li class="{{bb}}" ><a href={% url 'shop:cart_detail' %}> Cart &nbsp;  {% with total_items=cart|length %}
+                                <li class="{{bb}}" ><a href={% url 'shop:cart_detail' %}> Cart &nbsp;  
+                                    {% with total_items=cart|length %}
+                                        
+                                        {% ifnotequal total_items 0  %}
+                                            <span id="cartCounter" class="has-badge-danger has-badge-rounded"  data-badge="{{total_items}}">
+                                            </span>
+                                        {% endifnotequal %}
+                                            
+                                      
                                    
-                                    <span id="cartCounter" class="has-badge-danger has-badge-rounded"  data-badge="{{total_items}}">
-                                    </span>
-                                   
-                                 
-
                                     {% endwith %}
                                     <i data-feather="shopping-cart"></i>
                                 </a></li>

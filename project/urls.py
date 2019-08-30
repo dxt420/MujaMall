@@ -8,9 +8,7 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop.urls')),
-    url(r'^ravepay/', include('ravepay.urls',namespace='ravepay')),
-    # url(r'^ravepay/', include(('ravepay.urls', 'ravepay'), namespace='ravepay')),
-    
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
